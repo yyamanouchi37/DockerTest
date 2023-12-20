@@ -1,0 +1,14 @@
+{
+  "name": "ejs",
+  "version": "1.0.0",
+  "description": "ejstest",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9"
+  }
+}
