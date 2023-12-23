@@ -1,0 +1,39 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    env_file: ./db/mysql.env
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/conf:/etc/mysql/conf.d/:ro
+      - dbdata:/var/lib/mysql
+    networks:
+      - ejsonly
+
+  app:
+    build: ./server
+    container_name: only_ejs
+    env_file:
+      - ./server/app.env
+    environment:
+      - TZ=Asia/Tokyo
+      - DEBUG=app:*
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server:/app
+    working_dir: /app
+    networks:
+      - ejsonly
+    depends_on:
+      - mysql
+
+networks:
+  ejsonly:
+
+volumes:
+  dbdata:
