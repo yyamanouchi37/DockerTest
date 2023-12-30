@@ -35,6 +35,14 @@ services:
     depends_on:
       - mysql
 
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    depends_on:
+      - app
+    ports:
+      - 80:80
+
 networks:
   ejsonly:
 
